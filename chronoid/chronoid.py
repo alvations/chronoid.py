@@ -21,15 +21,12 @@ def wrapper(func, arg, queue):
   queue.put(func(arg))
             
 q1, q2 = Queue(), Queue()
+q3, q4 =  Queue(), Queue()
+q5 = Queue()
 Thread(target=wrapper, args=(store_ngrams, 1, q1)).start()
 Thread(target=wrapper, args=(store_ngrams, 2, q2)).start()
-q1.get(); q2.get()
-
-q3, q4 =  Queue(), Queue()
 Thread(target=wrapper, args=(store_ngrams, 3, q3)).start()
 Thread(target=wrapper, args=(store_ngrams, 4, q4)).start()
-q3.get(); q4.get()
-
-q5 = Queue()
 Thread(target=wrapper, args=(store_ngrams, 5, q5)).start()
-q5.get() 
+
+q1.get(); q2.get(); q3.get(); q4.get(); q5.get() 
