@@ -8,7 +8,7 @@ import google_ngram_downloader as goograms
 from google_ngram_downloader import readline_google_store as read_goograms
 
 def store_ngrams(n):
-    fname, url, records = next(read_goograms(ngram_len=5))
+    fname, url, records = next(read_goograms(ngram_len=n))
     with io.open('googram.'+str(n), 'wb') as fout:
         record = 'r'
         while record:
